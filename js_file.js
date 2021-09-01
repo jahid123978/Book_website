@@ -1,5 +1,5 @@
 
-// resule not found defualt display none
+// result not found defualt display none
 document.getElementById('defualt').style.display = 'none';
 // data accessing from the server by using that link 
 const searchBook = () =>{
@@ -7,15 +7,15 @@ const searchBook = () =>{
     const searchField = searchText.value;
 
     searchText.value = '';
-    const url = `http://openlibrary.org/search.json?q=${searchField}`;
+    const url = `https://openlibrary.org/search.json?q=${searchField}`;
     fetch(url)
     .then(res=>res.json())
-    .then(bookData=>displaybooks(bookData.docs));
+    .then(bookData=>displayBooks(bookData.docs));
 
 }
 // searchBook();
 // Display books result which searched by input feilsd 
-const displaybooks = books =>{
+const displayBooks = books =>{
     console.log(books);
     const bookSection = document.getElementById('book-section');
     bookSection.textContent = '';
@@ -23,12 +23,15 @@ const displaybooks = books =>{
         document.getElementById('defualt').style.display = 'block';
        const defualeResult = document.getElementById('defualt');
        defualeResult.innerText =`No result found search again with in valid information`;
+       document.getElementById('count').style.display = 'none';
             }
     else{
         let count = 0;
         books.forEach(book =>{
+          document.getElementById('count').style.display = 'block';
             const searchNumber = document.getElementById('count');
             searchNumber.innerText = `Total Search Results are: ${count++}`;
+            document.getElementById('defualt').style.display = 'none';
             console.log(book);
                      const div = document.createElement('div');
                     //  div.classList.add(col);
